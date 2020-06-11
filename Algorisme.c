@@ -367,19 +367,19 @@ int tipus3d(struct list *generadors, int n, struct lmin *vmin)
 
         vmin->len = 0;
     }
-    // for (int j = i; j < (*num); j++)
-    // {
-    //     vmin->l[j] = vmin->l[j] + 1;
-    //         (*num)++;
-    // }
-    // return 9;
-    // free(w->vect);
-    // free(w);
-    // free(wmin->l);
-    // free(wmin);
-    // free(vcares->l);
-    // free(vcares);  
-    // return 666;
+    for (int j = i; j < (*num); j++)
+    {
+        vmin->l[j] = vmin->l[j] + 1;
+            (*num)++;
+    }
+    return 9;
+    free(w->vect);
+    free(w);
+    free(wmin->l);
+    free(wmin);
+    free(vcares->l);
+    free(vcares);  
+    return 666;
 }
 //
 //
