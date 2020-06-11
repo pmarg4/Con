@@ -46,7 +46,6 @@ int main(int argc, char *argv[])
     int n, resultat;
     struct list *generadors;
     struct lmin *vmin;
-    struct list *projeccio;
     int zero;
     if (argc != 3)
     {
@@ -60,12 +59,7 @@ int main(int argc, char *argv[])
         printf("No hi ha prou memoria\n");
         return 51;
     }
-    projeccio = malloc(sizeof(list));
-    if (projeccio == NULL)
-    {
-        printf("No hi ha prou memoria\n");
-        return 51;
-    }
+
     vmin = malloc(sizeof(lmin));
     if (vmin == NULL)
     {
@@ -74,12 +68,6 @@ int main(int argc, char *argv[])
     }
     generadors->vect = malloc(n * sizeof(double[3]));
     if (generadors->vect == NULL)
-    {
-        printf("No hi ha prou memoria\n");
-        return 51;
-    }
-    projeccio->vect = malloc((3 * n) * sizeof(double));
-    if (projeccio->vect == NULL)
     {
         printf("No hi ha prou memoria\n");
         return 51;
@@ -112,11 +100,10 @@ int main(int argc, char *argv[])
     }
     imprimirMin(generadors, vmin);
     sortida(argv[2], generadors, vmin);
-    // free(generadors->vect); //Alliberam mem�ria.
-    // free(generadors);       //Alliberam mem�ria.
-    // free(vmin->l);
-    // free(vmin);
-    // free(projeccio);
+    free(generadors->vect); //Alliberam mem�ria.
+    free(generadors);       //Alliberam mem�ria.
+    free(vmin->l);
+    free(vmin);
     return 10;
 }
 //
@@ -372,14 +359,13 @@ int tipus3d(struct list *generadors, int n, struct lmin *vmin)
         vmin->l[j] = vmin->l[j] + 1;
             (*num)++;
     }
-    return 9;
     free(w->vect);
     free(w);
     free(wmin->l);
     free(wmin);
     free(vcares->l);
     free(vcares);  
-    return 666;
+    return 9;
 }
 //
 //
@@ -716,6 +702,7 @@ void sortida(char *name, struct list *llista, struct lmin *vmin)
         int ap = vmin->l[i];
         fprintf(file, "%g, %g, %g", llista->vect[ap][0], llista->vect[ap][1], llista->vect[ap][2]);
     }
+    fclose(file);
 }
 
 //
